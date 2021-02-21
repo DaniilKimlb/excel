@@ -1,0 +1,50 @@
+{
+  "name": "excel",
+  "version": "1.0.0",
+  "description": "Pure JavaScript Excel",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=development webpack serve --open",
+    "build": "cross-env NODE_ENV=production webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaniilKimlb/DaniilKimlb_Excel_to_pure_JavaScript.git"
+  },
+  "keywords": [
+    "js",
+    "JavaScript",
+    "Excel"
+  ],
+  "author": "Daniil Kim <dan.kim.04lb@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaniilKimlb/DaniilKimlb_Excel_to_pure_JavaScript/issues"
+  },
+  "homepage": "https://github.com/DaniilKimlb/DaniilKimlb_Excel_to_pure_JavaScript#readme",
+  "private": true,
+  "targets": "> 0.25%, not dead",
+  "devDependencies": {
+    "@babel/core": "^7.12.17",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.17",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.0.2",
+    "css-minimizer-webpack-plugin": "^1.2.0",
+    "eslint": "^7.20.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-loader": "^4.0.2",
+    "html-webpack-plugin": "^5.1.0",
+    "mini-css-extract-plugin": "^1.3.8",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
