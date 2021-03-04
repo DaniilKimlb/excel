@@ -10,13 +10,16 @@
   padding-bottom: 2px;
   overflow-x: auto;
   .row {
+    position: relative;
     display: flex;
     flex-direction: row;
     min-height: 20px;
     height: $row-height;
   }
+
   .row-info {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     min-width: $info-ceil-width;
@@ -24,11 +27,26 @@
     border: 1px solid $border-color;
     background-color: #f8f9fa;
     border-top: none;
+    .row-resize {
+      background: $primary-color;
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      height: 4px;
+      z-index: 1000;
+      opacity: 0;
+      &:hover {
+        opacity: 1 !important;
+        cursor: row-resize;
+      }
+    }
   }
   .row-data {
     display: flex;
   }
   .colum {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,6 +57,21 @@
     height: 100%;
     border-top: none;
     border-left: none;
+    .col-resize {
+      position: absolute;
+      background: $primary-color;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1000;
+      width: 4px;
+      opacity: 0;
+
+      &:hover {
+        opacity: 1 !important;
+        cursor: col-resize;
+      }
+    }
   }
   .ceil {
     outline: none;
@@ -50,9 +83,10 @@
     border-top: 0;
     border-left: 0;
     white-space: nowrap;
+
     &.selected {
       border: none;
-      outline: 2px solid #3c74ff;
+      outline: 2px solid $primary-color;
       z-index: 2;
     }
   }
