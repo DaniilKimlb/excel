@@ -13,13 +13,16 @@ function createRow(infoCount, colum) {
     </div>
     `;
 }
-function createCeil(ceil, index, letter) {
-  return `<div class="ceil" contenteditable data-ceil="${letter}">
-  ${ceil}
+function createCeil(ceil, rows, cols) {
+  return `<div class="ceil" contenteditable 
+  data-type="ceil"
+  data-ceil="${cols}" 
+  data-id="${rows}:${cols}">
+  
   </div>`;
 }
-function createColum(cols) {
-  return `<div class="colum" data-type = "resizable" >
+function createColum(cols, index) {
+  return `<div class="colum" data-cols="${index}" data-type = "resizable" >
   ${cols}
   <div class = "col-resize" data-resize = "colum"></div>
   </div>
@@ -29,12 +32,15 @@ const CHARS = {
   A: 65,
   Z: 90,
 };
+function toChar(_, index) {
+  return String.fromCharCode(CHARS.A + index);
+}
 export function createTable(rowsCount = 20) {
   const colsCount = CHARS.Z - CHARS.A + 1;
   const rows = [];
   const cols = new Array(colsCount)
     .fill('')
-    .map((e, i) => String.fromCharCode(CHARS.A + i))
+    .map(toChar)
     .map(createColum)
     .join('');
 
@@ -42,9 +48,7 @@ export function createTable(rowsCount = 20) {
   for (let i = 0; i < rowsCount; i++) {
     const ceil = new Array(colsCount)
       .fill('')
-      .map((e, index) =>
-        createCeil(e, i + 1, String.fromCharCode(CHARS.A + index))
-      )
+      .map((ceil, index) => createCeil(ceil, i, index))
       .join('');
     rows.push(createRow(i + 1, ceil));
   }
