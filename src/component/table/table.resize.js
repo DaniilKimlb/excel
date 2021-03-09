@@ -34,7 +34,7 @@ export function tableResize($root, event) {
     if (type === 'colum') {
       $parent.css({ width: coords.width + delta + 'px' });
       $root
-        .findAll(`[data-ceil="${$parent.text}"]`)
+        .findAll(`[data-ceil="${$parent.data.cols}"]`)
         .forEach((element) =>
           $(element).css({ width: coords.width + delta + 'px' })
         );
