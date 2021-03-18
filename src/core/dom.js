@@ -17,14 +17,22 @@ class Dom {
     this.html('');
     return this;
   }
-  set text(text) {
-    this.$el.textContent = text;
-  }
-  get text() {
+
+  text(text) {
+    if (typeof text !== 'undefined') {
+      return (this.$el.textContent = text);
+    }
     if (this.$el.tagName.toLowerCase() === 'input') {
       return this.$el.value.trim();
     }
     return this.$el.textContent.trim();
+  }
+  attr(name, value) {
+    if (value) {
+      this.$el.setAttribute(name, value);
+      return this;
+    }
+    return this.$el.getAttribute(name);
   }
   append(node) {
     if (node instanceof Dom) {
@@ -64,13 +72,19 @@ class Dom {
     return $(this.$el.querySelector(selected));
   }
   findAll(selected) {
-    return $(this.$el.querySelectorAll(selected));
+    return this.$el.querySelectorAll(selected);
   }
   css(styles = {}) {
     Object.keys(styles).forEach((keys) => {
       this.$el.style[keys] = styles[keys];
     });
     return this;
+  }
+  getStyles(styles = []) {
+    return styles.reduce((res, s) => {
+      res[s] = this.$el.style[s];
+      return res;
+    }, {});
   }
   focus() {
     this.$el.focus();
