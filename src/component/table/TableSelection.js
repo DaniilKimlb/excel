@@ -22,4 +22,12 @@ export class TableSelection {
     this.group.forEach(($el) => $el.removeCn(TableSelection.className));
     this.group = [];
   }
+  styleSelect(styles) {
+    this.group.forEach(($el) => {
+      $el.css(styles);
+    });
+  }
+  get getIds() {
+    return this.group.map(($el) => $el.id());
+  }
 }
