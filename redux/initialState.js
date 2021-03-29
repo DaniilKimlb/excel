@@ -1,5 +1,5 @@
 import { defaultStyles, defaultTitle } from '../src/constants';
-import { storage } from '../src/core/utility';
+import { copy } from '../src/core/utility';
 
 const defaultState = {
   colState: {},
@@ -8,8 +8,9 @@ const defaultState = {
   stylesState: {},
   textTitle: defaultTitle,
   changeStyles: defaultStyles,
+  openedDate: new Date().toJSON(),
 };
 
-export const initialState = storage('excel-state')
-  ? storage('excel-state')
-  : defaultState;
+export function initialState(state) {
+  return state ? state : copy(defaultState);
+}

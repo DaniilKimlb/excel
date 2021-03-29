@@ -62,3 +62,9 @@ export function debounce(fn, wait) {
     timeout = setTimeout(later, wait);
   };
 }
+export function copy(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+export function preventDefault(event) {
+  event.preventDefault();
+}
