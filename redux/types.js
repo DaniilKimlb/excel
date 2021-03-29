@@ -3,3 +3,4 @@ export const CEIL_TEXT = 'CEIL_TEXT';
 export const CHANGE_STYLES = 'CHANGE_STYLES';
 export const APPLY_STYLES = 'APPLY_STYLES';
 export const HEADER_TEXT = 'HEADER_TEXT';
+export const UPDATE_DATE = 'UPDATE_DATE';

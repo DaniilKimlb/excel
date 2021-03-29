@@ -4,6 +4,7 @@ import {
   CHANGE_STYLES,
   HEADER_TEXT,
   RESIZE_TABLE,
+  UPDATE_DATE,
 } from './types';
 
 export function resizeTableCol(data) {
@@ -23,4 +24,9 @@ export function applyStyles(data) {
 }
 export function changeHeaderTitle(data) {
   return { type: HEADER_TEXT, data };
+}
+export function updateDate() {
+  return {
+    type: UPDATE_DATE,
+  };
 }
