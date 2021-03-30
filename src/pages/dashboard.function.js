@@ -32,7 +32,7 @@ export function createRecordsTable() {
   return `
     <div class="db__list-header">
       <span>Название</span>
-      <span>Дата создание</span>
+      <span>Дата открытия</span>
     </div>
     <ul class="db__list">
      ${keys.map(toHTML).join('')}

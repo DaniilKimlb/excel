@@ -10,7 +10,10 @@ const defaultState = {
   changeStyles: defaultStyles,
   openedDate: new Date().toJSON(),
 };
-
+const normalize = (state) => ({
+  ...state,
+  openedDate: new Date().toJSON(),
+});
 export function initialState(state) {
-  return state ? state : copy(defaultState);
+  return state ? normalize(state) : copy(defaultState);
 }
