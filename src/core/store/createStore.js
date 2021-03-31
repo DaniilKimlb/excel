@@ -9,7 +9,7 @@ export function createStore(rootReducer, initialState) {
     subscribe(fc) {
       listeners.push(fc);
       return {
-        unsubscribe: () => listeners.filter((lis) => lis !== fc),
+        unsubscribe: () => listeners = listeners.filter((lis) => lis !== fc),
       };
     },
     getState() {
