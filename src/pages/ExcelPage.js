@@ -1,4 +1,4 @@
-import { Page } from '../core/Page';
+import { Page } from '../core/page/Page';
 import { Excel } from '../component/excel/Excel';
 import { Header } from '../component/header/Header';
 import { Toolbar } from '../component/toolbar/Toolbar';
@@ -6,21 +6,23 @@ import { Formula } from '../component/formula/Formula';
 import { Table } from '../component/table/Table';
 import { createStore } from '../core/store/createStore';
 import { rootReducer } from '../../redux/rootReducer';
-import { debounce, storage } from '../core/utility';
 import { initialState } from '../../redux/initialState';
-function storageName(param) {
-  return 'excel:' + param;
-}
+import {StateProcessor} from '../core/page/StateProcessor';
+import {LocalStorageClient} from '../shared/LocalStorageClient';
+
 
 export class ExcelPage extends Page {
-  getRoot() {
-    const param = this.param ? this.param : Date.now().toString();
-    const state = storage(storageName(param));
+  constructor(param) {
+    super(param);
+    this.subScr = null;
+    this.stateProcessor = new StateProcessor(
+        new LocalStorageClient(this.param)
+    );
+  }
+  async getRoot() {
+    const state = await this.stateProcessor.get();
     const store = createStore(rootReducer, initialState(state));
-    const stateListener = debounce((state) => {
-      storage(storageName(param), state);
-    }, 300);
-    store.subscribe(stateListener);
+    this.subScr = store.subscribe(this.stateProcessor.listen);
     this.excel = new Excel({
       components: [Header, Toolbar, Formula, Table],
       store,
@@ -32,5 +34,6 @@ export class ExcelPage extends Page {
   }
   destroy() {
     this.excel.destroy();
+    this.subScr.unsubscribe();
   }
 }
